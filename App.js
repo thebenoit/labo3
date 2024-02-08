@@ -24,8 +24,13 @@ export default function App() {
       <Text></Text>
       <Text></Text>
       <Text></Text>
+      <Text style={{fontSize:20,}}>Joueur {nom} devinez le pays </Text>
       <Text></Text>
-      <Text style={{fontSize:20}}>Joueur {nom} devinez le pays </Text>
+      <TextInput style={styles.input} value='' >
+        
+      </TextInput>
+      <Button style={styles.Button} title='Soumettre'></Button>
+      <Button style={styles.Button} title='Rejouer'></Button>
       
 
       <StatusBar style="auto" />
@@ -49,5 +54,11 @@ const styles = StyleSheet.create({
     borderColor:'black',
     borderWidth: 2,
     width: '100%'
+  },
+  buton: {
+    width:'100%',
+    //paddingBottom: 15
+    
+
   }
 });
