@@ -1,48 +1,57 @@
-import { StatusBar } from 'expo-status-bar';
+import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { StyleSheet, Text, View, TextInput,Button, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Alert } from "react-native";
 
-
-function Head(){
-  return(
+function Head() {
+  return (
     <View style={styles.container}>
       <Text style={styles.title}>Jeu Devinette</Text>
     </View>
-
-  )
+  );
 }
-const deviner = (props) => {
-  const [pays, setPays] = useState(" haiti");
-
-  if (pays = props){
-    Alert.alert(`Bravo c'est bien ${pays} `)
-  } else{Alert.alert(` ${props} n'est pas le pays à deviner`)}
-
-
-
-}
+const deviner = (paysADeviner, reponse) => {
+  
+  if (paysADeviner === reponse) {
+    Alert.alert(`Bravo c'est bien${reponse}!!! `);
+    console.log(`Bravo c'est bien ${reponse} `)
+  } else {
+    Alert.alert(` ${paysADeviner} n'est pas le pays à deviner`);
+    console.log(` ${paysADeviner} n'est pas le pays à deviner`);
+  }
+  return;
+};
 export default function App() {
+  const [paysReponse, setPaysReponse] = useState(" haiti");
   const [nom, setNom] = useState(" ");
   const [pays, setPays] = useState(" ");
   return (
     <View style={styles.container}>
-      <Head/>
+      <Head />
       <Text>Tapez votre nom:</Text>
       <Text></Text>
-      <TextInput style={styles.input} value={nom} 
-      onChangeText={setNom}></TextInput>
+      <TextInput
+        style={styles.input}
+        value={nom}
+        onChangeText={setNom}
+      ></TextInput>
       <Text></Text>
       <Text></Text>
       <Text></Text>
-      <Text style={{fontSize:20,}}>Joueur {nom} devinez le pays </Text>
+      <Text style={{ fontSize: 20 }}>Joueur{nom} devinez le pays </Text>
       <Text></Text>
-      <TextInput style={styles.input} value='' >
-        
-      </TextInput>
-      <Button style={styles.Button} title='Soumettre'></Button>
+      <TextInput
+        style={styles.input}
+        value={pays}
+        onChangeText={setPays}
+      ></TextInput>
+      <Button
+        style={styles.button}
+        title="Soumettre"
+        onPress={() => deviner(pays, paysReponse )}
+       // onPress={deviner(paysReponse, pays)}
+      ></Button>
       <Text></Text>
-      <Button style={styles.Button} title='Rejouer'></Button>
-      
+      <Button style={styles.button} title="Rejouer"></Button>
 
       <StatusBar style="auto" />
     </View>
@@ -51,27 +60,24 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    
-    backgroundColor: '#ffff',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
+    backgroundColor: "#ffff",
+    alignItems: "flex-start",
+    justifyContent: "center",
     padding: 1,
   },
   title: {
     fontSize: 31,
-    color: 'blue',
+    color: "blue",
     padding: 25,
-    paddingLeft:0
+    paddingLeft: 0,
   },
   input: {
-    borderColor:'black',
+    borderColor: "black",
     borderWidth: 2,
-    width: '100%'
+    width: "100%",
   },
-  Button: {
-    width:'100%',
-    paddingBottom: 15
-    
-
-  }
+  button: {
+    width: "100%",
+    paddingBottom: 15,
+  },
 });
