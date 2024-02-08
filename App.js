@@ -1,6 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { StyleSheet, Text, View, TextInput, Button, Alert } from "react-native";
+import {
+  TouchableOpacity,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  Alert,
+} from "react-native";
 
 function Head() {
   return (
@@ -10,13 +18,10 @@ function Head() {
   );
 }
 const deviner = (paysADeviner, reponse) => {
-  
   if (paysADeviner === reponse) {
     Alert.alert(`Bravo c'est bien${reponse}!!! `);
-    console.log(`Bravo c'est bien ${reponse} `)
   } else {
-    Alert.alert(` ${paysADeviner} n'est pas le pays à deviner`);
-    console.log(` ${paysADeviner} n'est pas le pays à deviner`);
+    Alert.alert(` Essaie  ${paysADeviner} n'est pas le pays à deviner`);
   }
   return;
 };
@@ -24,6 +29,8 @@ export default function App() {
   const [paysReponse, setPaysReponse] = useState(" haiti");
   const [nom, setNom] = useState(" ");
   const [pays, setPays] = useState(" ");
+  const [compteur, setCompteur] = useState(0);
+
   return (
     <View style={styles.container}>
       <Head />
@@ -44,14 +51,18 @@ export default function App() {
         value={pays}
         onChangeText={setPays}
       ></TextInput>
-      <Button
+      <TouchableOpacity
         style={styles.button}
         title="Soumettre"
-        onPress={() => deviner(pays, paysReponse )}
-       // onPress={deviner(paysReponse, pays)}
-      ></Button>
-      <Text></Text>
-      <Button style={styles.button} title="Rejouer"></Button>
+        onPress={() => deviner(pays, paysReponse)}
+        // onPress={deviner(paysReponse, pays)}
+      >
+        <Text style={styles.buttonText}>Soumettre</Text>
+      </TouchableOpacity>
+  
+      <TouchableOpacity style={styles.button2} title="Rejouer">
+        <Text style={styles.buttonText}>Rejouer</Text>
+      </TouchableOpacity>
 
       <StatusBar style="auto" />
     </View>
@@ -76,8 +87,28 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     width: "100%",
   },
+
   button: {
+    borderRadius: 8,
+    backgroundColor: "#0092FF",
     width: "100%",
-    paddingBottom: 15,
+    padding: 5,
+    marginBottom: 15,
+    borderWidth: 1,
+  },
+  button2: {
+    borderRadius: 8,
+    backgroundColor: "#FF0000",
+    width: "100%",
+    padding: 5,
+    marginBottom: 15,
+    borderWidth: 1,
+  },
+  buttonText: {
+    color: "white",
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    fontSize: 16,
+    textAlign: "center",
   },
 });
