@@ -17,19 +17,33 @@ function Head() {
     </View>
   );
 }
-const deviner = (paysADeviner, reponse) => {
-  if (paysADeviner === reponse) {
-    Alert.alert(`Bravo c'est bien${reponse}!!! `);
-  } else {
-    Alert.alert(` Essaie  ${paysADeviner} n'est pas le pays à deviner`);
-  }
-  return;
-};
+
 export default function App() {
-  const [paysReponse, setPaysReponse] = useState(" haiti");
+  const [paysReponse, setPaysReponse] = useState("haiti");
   const [nom, setNom] = useState(" ");
   const [pays, setPays] = useState(" ");
   const [compteur, setCompteur] = useState(0);
+  const compteurAugmente = () => (
+     setCompteur(compteur + 1)
+  )
+
+  const deviner = () => {
+  
+    //const compteur = props;
+    
+      if (compteur > 3){
+        compteurAugmente();
+        Alert.alert(` Essaie ${compteur}  ${pays} n'est pas le pays à deviner nombres de tentatives dépassé vous avez perdu`);
+      }
+       else if (pays === paysReponse) {
+       setCompteur(0)
+        Alert.alert(`Bravo c'est bien ${paysReponse}!!! `);
+      } else {
+        compteurAugmente();
+        Alert.alert(` Essaie ${compteur}  ${pays} n'est pas le pays à deviner`);
+      }
+      return;
+    };
 
   return (
     <View style={styles.container}>
@@ -54,7 +68,7 @@ export default function App() {
       <TouchableOpacity
         style={styles.button}
         title="Soumettre"
-        onPress={() => deviner(pays, paysReponse)}
+        onPress={() => deviner(pays, paysReponse,compteurAugmente)}
         // onPress={deviner(paysReponse, pays)}
       >
         <Text style={styles.buttonText}>Soumettre</Text>
