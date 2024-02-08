@@ -27,23 +27,27 @@ export default function App() {
      setCompteur(compteur + 1)
   )
 
-  const deviner = () => {
-  
-    //const compteur = props;
-    
-      if (compteur > 3){
+  const deviner = () => {    
+      if (compteur >= 3){
         compteurAugmente();
-        Alert.alert(` Essaie ${compteur}  ${pays} n'est pas le pays à deviner nombres de tentatives dépassé vous avez perdu`);
+        Alert.alert(` Essaie ${compteur} ${pays} n'est pas le pays à deviner nombres de tentatives 
+        dépassé vous avez perdu`);
+        setCompteur(0)
       }
        else if (pays === paysReponse) {
        setCompteur(0)
         Alert.alert(`Bravo c'est bien ${paysReponse}!!! `);
       } else {
         compteurAugmente();
-        Alert.alert(` Essaie ${compteur}  ${pays} n'est pas le pays à deviner`);
+        Alert.alert(` Essaie ${compteur}:${pays} n'est pas le pays à deviner`);
       }
       return;
     };
+
+    const rejouer = () => [
+
+
+    ]
 
   return (
     <View style={styles.container}>
@@ -74,7 +78,8 @@ export default function App() {
         <Text style={styles.buttonText}>Soumettre</Text>
       </TouchableOpacity>
   
-      <TouchableOpacity style={styles.button2} title="Rejouer">
+      <TouchableOpacity style={styles.button2} title="Rejouer"
+      onPress={() => setPays('')}>
         <Text style={styles.buttonText}>Rejouer</Text>
       </TouchableOpacity>
 
