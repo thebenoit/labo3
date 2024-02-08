@@ -15,7 +15,7 @@ export default function App() {
       <Head/>
       <Text>Tapez votre nom:</Text>
       <Text></Text>
-      <TextInput value='@'></TextInput>
+      <TextInput style={styles.input} value=''></TextInput>
       
 
       <StatusBar style="auto" />
@@ -35,9 +35,9 @@ const styles = StyleSheet.create({
     fontSize: 31,
     color: 'blue'
   },
-  TextInput: {
+  input: {
     borderColor:'black',
-    borderWidth: '20px',
-    width: '150px'
+    borderWidth: 2,
+    width: '100%'
   }
 });
